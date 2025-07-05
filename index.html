@@ -1,3 +1,440 @@
-<h1 style="text-align:center;">
-  <a href="https://github.com/hash-breaker/Religion-A-Flawed-Concept-/Religion%2C%20A%20Flawed%20Concept.pdf" target="_blank">READ THIS PDF</a>
-</h1>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A Critical Examination of Religion</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Chosen Palette: Calm Neutral Harmony -->
+    <!-- Application Structure Plan: A thematic, non-linear dashboard structure is used to make the dense report content more digestible and exploratory. A persistent top navigation allows users to jump between four core themes: 'The Human Construct' (origins), 'A Tool of Power' (social control/gender), 'Faith vs. Fact' (epistemology/science), and 'Debunking the Divine' (specific claims). This structure prioritizes user-driven discovery over a rigid, linear reading, which is more effective for critical analysis. Key interactions include clickable cards to reveal details (for cognitive biases), a tabbed interface (for scriptural evidence), and an interactive chart (for scientific literacy data), all designed to break down complex information into manageable, engaging pieces. -->
+    <!-- Visualization & Content Choices: 
+        - Cognitive Biases -> Goal: Inform/Organize -> Method: Interactive HTML flip cards -> Interaction: Click-to-reveal -> Justification: Breaks down complex psychological concepts into discrete, digestible units, encouraging interaction.
+        - Sociological Theories -> Goal: Inform/Compare -> Method: Side-by-side text blocks -> Interaction: Simple read -> Justification: Clear, direct comparison of foundational theories.
+        - Gender Inequality Scriptures -> Goal: Inform/Organize -> Method: Tabbed HTML content sections -> Interaction: Click tabs to switch religions -> Justification: Organizes damning evidence by source, making it easy to compare and navigate without overwhelming the user.
+        - Scientific Literacy Data -> Goal: Compare -> Method: Bar Chart -> Interaction: Hover for tooltips -> Justification: Provides a clear, quantitative visualization of the correlation between religiosity and scientific knowledge, which is a powerful and memorable data point. -> Library: Chart.js.
+        - Epic Timelines -> Goal: Compare/Change -> Method: Interactive HTML/CSS timeline -> Interaction: Hover/click for details -> Justification: Visually contrasts scientific and religious timelines to highlight the vast discrepancy.
+        - Miracle Claims -> Goal: Inform/Debunk -> Method: Interactive HTML flip cards -> Interaction: Click-to-flip from 'Claim' to 'Reality' -> Justification: Creates a dramatic and clear "reveal" of the scientific refutation, making the debunking more impactful.
+        - Age of Earth -> Goal: Compare -> Method: Proportional HTML/CSS bar graphic -> Interaction: Visual comparison -> Justification: A simple but powerful visual to show the immense scale difference between scientific and religious claims.
+    -->
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #F8F5F2; /* Warm Neutral Background */
+            color: #4a4a4a;
+        }
+        .nav-item {
+            @apply px-4 py-2 text-sm font-medium text-gray-600 rounded-md cursor-pointer transition-all duration-300;
+        }
+        .nav-item.active {
+            @apply bg-slate-700 text-white;
+        }
+        .nav-item:not(.active):hover {
+            @apply bg-gray-200 text-gray-900;
+        }
+        .card {
+            transform-style: preserve-3d;
+            transition: transform 0.6s;
+            cursor: pointer;
+        }
+        .card.is-flipped {
+            transform: rotateY(180deg);
+        }
+        .card-face {
+            backface-visibility: hidden;
+            -webkit-backface-visibility: hidden;
+        }
+        .card-back {
+            transform: rotateY(180deg);
+        }
+        .tab-button.active {
+            @apply border-slate-700 text-slate-800;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 350px;
+            max-height: 450px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 450px;
+            }
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <div class="min-h-screen container mx-auto px-4 py-8">
+        <header class="text-center mb-12">
+            <h1 class="text-4xl md:text-5xl font-bold text-slate-800 mb-2">A Critical Examination of Religion</h1>
+            <p class="text-lg text-gray-600 max-w-3xl mx-auto">An interactive exploration of religion as a human construct, its societal impact, and the empirical challenges to its claims.</p>
+        </header>
+
+        <nav class="flex flex-wrap justify-center items-center gap-2 md:gap-4 p-2 mb-12 bg-gray-100 rounded-lg shadow-sm sticky top-4 z-10">
+            <div id="nav-construct" class="nav-item active">The Human Construct</div>
+            <div id="nav-power" class="nav-item">A Tool of Power</div>
+            <div id="nav-fact" class="nav-item">Faith vs. Fact</div>
+            <div id="nav-debunking" class="nav-item">Debunking the Divine</div>
+        </nav>
+
+        <main>
+            <!-- Section 1: The Human Construct -->
+            <section id="section-construct" class="">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl font-bold text-slate-700 mb-2">The Human Construct</h2>
+                    <p class="max-w-3xl mx-auto text-gray-600">This section explores the origins of religious belief, not as divine revelation, but as an emergent property of human cognition and social evolution. We will examine the cognitive biases that predispose our minds to supernatural explanations and the sociological theories that frame religion as a functional, man-made social technology.</p>
+                </div>
+                
+                <div class="bg-white p-6 md:p-8 rounded-lg shadow-md mb-8">
+                    <h3 class="text-2xl font-semibold text-slate-800 mb-4">Cognitive Biases: The Mind's Blueprint for Belief</h3>
+                    <p class="text-gray-600 mb-6">The Cognitive Science of Religion suggests our brains are naturally wired with certain shortcuts or biases that, while useful for survival, also make us susceptible to supernatural beliefs. Click on each card to learn about a key bias.</p>
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                        
+                        <div class="perspective-1000">
+                            <div class="card relative w-full h-48">
+                                <div class="card-face absolute w-full h-full p-6 bg-slate-100 rounded-lg flex flex-col justify-center items-center text-center">
+                                    <h4 class="font-bold text-lg text-slate-700">Hyperactive Agency Detection (HADD)</h4>
+                                    <p class="text-xs mt-2 text-gray-500">(Click to reveal)</p>
+                                </div>
+                                <div class="card-back absolute w-full h-full p-6 bg-slate-700 text-white rounded-lg flex flex-col justify-center">
+                                    <p class="text-sm">The tendency to assume that ambiguous events are caused by an intelligent agent. The rustle in the bushes is more safely assumed to be a predator than the wind, leading to seeing faces in clouds or gods in storms.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="perspective-1000">
+                           <div class="card relative w-full h-48">
+                                <div class="card-face absolute w-full h-full p-6 bg-slate-100 rounded-lg flex flex-col justify-center items-center text-center">
+                                    <h4 class="font-bold text-lg text-slate-700">Minimally Counterintuitive (MCI) Concepts</h4>
+                                    <p class="text-xs mt-2 text-gray-500">(Click to reveal)</p>
+                                </div>
+                                <div class="card-back absolute w-full h-full p-6 bg-slate-700 text-white rounded-lg flex flex-col justify-center">
+                                    <p class="text-sm">Religious ideas that are memorable because they are mostly normal but violate one or two basic expectations (e.g., a talking snake, a ghost). This makes them catchy and easy to transmit culturally.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="perspective-1000">
+                             <div class="card relative w-full h-48">
+                                <div class="card-face absolute w-full h-full p-6 bg-slate-100 rounded-lg flex flex-col justify-center items-center text-center">
+                                    <h4 class="font-bold text-lg text-slate-700">Mind-Body Dualism</h4>
+                                    <p class="text-xs mt-2 text-gray-500">(Click to reveal)</p>
+                                </div>
+                                <div class="card-back absolute w-full h-full p-6 bg-slate-700 text-white rounded-lg flex flex-col justify-center">
+                                    <p class="text-sm">The intuitive feeling that the mind (or soul) is separate from the physical body. This bias forms the foundation for beliefs in afterlives, spirits, and ghosts.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                         <div class="perspective-1000">
+                             <div class="card relative w-full h-48">
+                                <div class="card-face absolute w-full h-full p-6 bg-slate-100 rounded-lg flex flex-col justify-center items-center text-center">
+                                    <h4 class="font-bold text-lg text-slate-700">Teleological Thinking</h4>
+                                    <p class="text-xs mt-2 text-gray-500">(Click to reveal)</p>
+                                </div>
+                                <div class="card-back absolute w-full h-full p-6 bg-slate-700 text-white rounded-lg flex flex-col justify-center">
+                                    <p class="text-sm">The tendency to see purpose and intention in the natural world. We might think mountains are "for" climbing or that rain is "for" watering plants, leading to belief in a grand designer or creator.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="bg-white p-6 md:p-8 rounded-lg shadow-md">
+                     <h3 class="text-2xl font-semibold text-slate-800 mb-4">Sociological Theories: Religion's Role in Society</h3>
+                     <p class="text-gray-600 mb-6">Classical sociologists analyzed religion not for its truth, but for its function. They saw it as a powerful social force that could be used for cohesion, oppression, or to drive change.</p>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                        <div>
+                            <h4 class="font-bold text-lg text-slate-700 mb-2">Karl Marx: The Opium of the People</h4>
+                            <p class="text-sm text-gray-600">Marx argued religion is a tool of oppression used by the ruling class to pacify the exploited masses. It eases the pain of their condition with promises of an afterlife, preventing them from challenging the real, material sources of their suffering.</p>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-lg text-slate-700 mb-2">Émile Durkheim: The Social Glue</h4>
+                            <p class="text-sm text-gray-600">Durkheim saw religion's primary function as creating social cohesion. Shared rituals and beliefs create "collective effervescence"—a powerful sense of community and shared morality that binds society together.</p>
+                        </div>
+                         <div>
+                            <h4 class="font-bold text-lg text-slate-700 mb-2">Max Weber: The Engine of Change</h4>
+                            <p class="text-sm text-gray-600">Weber showed how religious ideas could drive major social transformations. He famously linked the "Protestant ethic"—values of hard work and asceticism—to the emergence of modern capitalism.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 2: A Tool of Power -->
+            <section id="section-power" class="hidden">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl font-bold text-slate-700 mb-2">A Tool of Power</h2>
+                    <p class="max-w-3xl mx-auto text-gray-600">This section provides a feminist critique of religion, highlighting its historical and ongoing role in establishing and perpetuating patriarchal norms. We will examine how sacred texts and institutional structures have been used to subordinate women and limit their agency, turning societal prejudice into divine law.</p>
+                </div>
+                
+                <div class="bg-white p-6 md:p-8 rounded-lg shadow-md">
+                    <h3 class="text-2xl font-semibold text-slate-800 mb-4">Sacred Texts and Female Subordination</h3>
+                    <p class="text-gray-600 mb-6">Many major religious traditions contain texts that have been interpreted to codify female inferiority, limiting women's roles and excluding them from positions of authority. Select a religion below to see examples.</p>
+                    
+                    <div>
+                        <div class="border-b border-gray-200 mb-4">
+                            <nav class="-mb-px flex space-x-6" aria-label="Tabs">
+                                <button class="tab-button active whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm" data-tab="christianity">Christianity</button>
+                                <button class="tab-button whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300" data-tab="judaism">Judaism</button>
+                                <button class="tab-button whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300" data-tab="hinduism">Hinduism</button>
+                            </nav>
+                        </div>
+
+                        <div id="tab-content-christianity" class="tab-content">
+                            <blockquote class="border-l-4 border-slate-300 pl-4 italic text-gray-700 mb-4">"I do not permit a woman to teach or to exercise authority over a man; rather, she is to remain quiet." <span class="block not-italic text-sm text-gray-500 mt-1">— 1 Timothy 2:11-12</span></blockquote>
+                             <blockquote class="border-l-4 border-slate-300 pl-4 italic text-gray-700">"Your desire shall be for your husband, and he shall rule over you." <span class="block not-italic text-sm text-gray-500 mt-1">— Genesis 3:16</span></blockquote>
+                        </div>
+                         <div id="tab-content-judaism" class="tab-content hidden">
+                            <blockquote class="border-l-4 border-slate-300 pl-4 italic text-gray-700 mb-4">"A man should be careful with the reading of the law and with the prayer because the woman is more inclined to be evil than the man." <span class="block not-italic text-sm text-gray-500 mt-1">— Kiddushin 29a, Talmud</span></blockquote>
+                             <blockquote class="border-l-4 border-slate-300 pl-4 italic text-gray-700">"Blessed are You, Lord our God, King of the Universe, who has not made me a woman." <span class="block not-italic text-sm text-gray-500 mt-1">— Berakhot 17a, Traditional Blessing</span></blockquote>
+                        </div>
+                        <div id="tab-content-hinduism" class="tab-content hidden">
+                           <blockquote class="border-l-4 border-slate-300 pl-4 italic text-gray-700">"In creation, women were made for men and are hence inferior to men." <span class="block not-italic text-sm text-gray-500 mt-1">— Manusmriti 9.3</span></blockquote>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-8 pt-6 border-t border-gray-200">
+                        <h4 class="font-bold text-lg text-slate-700 mb-2">The Consequence: Systemic Exclusion</h4>
+                        <p class="text-sm text-gray-600">This theological framework leads to tangible consequences: the exclusion of women from leadership (e.g., priesthood, rabbinate), the denial of theological education, and the creation of a "male-defined" official culture that ignores or suppresses female experience. This reinforces a cycle of oppression, where the very interpretations that justify subordination are upheld by institutions that exclude those who would challenge them.</p>
+                    </div>
+
+                </div>
+            </section>
+
+            <!-- Section 3: Faith vs. Fact -->
+            <section id="section-fact" class="hidden">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl font-bold text-slate-700 mb-2">Faith vs. Fact</h2>
+                    <p class="max-w-3xl mx-auto text-gray-600">This section examines the epistemological conflict between faith-based claims and evidence-based reasoning. It explores how religious dogma can impede critical thinking and demonstrates the measurable correlation between religious fundamentalism and lower levels of scientific literacy, a key indicator of rational inquiry in the modern world.</p>
+                </div>
+                
+                <div class="bg-white p-6 md:p-8 rounded-lg shadow-md mb-8">
+                    <h3 class="text-2xl font-semibold text-slate-800 mb-4">The Impact on Scientific Literacy</h3>
+                    <p class="text-gray-600 mb-6">Multiple studies show a significant inverse correlation between fundamentalist religious beliefs and scientific knowledge. This chart displays the disparity in understanding basic science facts across different groups, based on data cited in the source report. The negative impact of fundamentalism on science literacy was found to be more substantial than that of gender, race, or income.</p>
+                    <div class="chart-container">
+                        <canvas id="scienceLiteracyChart"></canvas>
+                    </div>
+                </div>
+
+                <div class="bg-white p-6 md:p-8 rounded-lg shadow-md">
+                    <h3 class="text-2xl font-semibold text-slate-800 mb-4">Epistemological Conflict: Two Ways of Knowing</h3>
+                    <p class="text-gray-600 mb-6">Religion and science represent fundamentally different approaches to truth. Critical thinking requires values that are often at odds with dogmatic belief.</p>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                        <div class="border border-gray-200 rounded-lg p-4">
+                            <h4 class="font-bold text-lg text-slate-700 mb-2">Faith-Based Knowing</h4>
+                            <ul class="list-disc list-inside text-sm text-gray-600 space-y-1">
+                                <li>Based on revelation, tradition, authority.</li>
+                                <li>Claims are often unfalsifiable.</li>
+                                <li>Discourages doubt ("Ask in faith, nothing wavering").</li>
+                                <li>Upholds "absolute" or "mysterious" truths.</li>
+                                <li>Often does not teach alternative views.</li>
+                            </ul>
+                        </div>
+                         <div class="border border-gray-200 rounded-lg p-4">
+                            <h4 class="font-bold text-lg text-slate-700 mb-2">Evidence-Based Knowing (Critical Thinking)</h4>
+                             <ul class="list-disc list-inside text-sm text-gray-600 space-y-1">
+                                <li>Based on logic, evidence, reason.</li>
+                                <li>Claims must be testable and falsifiable.</li>
+                                <li>Requires questioning and intellectual humility.</li>
+                                <li>Values clarity, consistency, and sound evidence.</li>
+                                <li>Requires evaluation of diverse perspectives.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Section 4: Debunking the Divine -->
+            <section id="section-debunking" class="hidden">
+                 <div class="text-center mb-12">
+                    <h2 class="text-3xl font-bold text-slate-700 mb-2">Debunking the Divine</h2>
+                    <p class="max-w-3xl mx-auto text-gray-600">This section applies scientific and historical analysis to systematically dismantle extraordinary religious claims. From ancient epics whose timelines defy human evolution to miracles that violate fundamental laws of nature, we examine the conflict between religious narrative and empirical reality.</p>
+                </div>
+
+                 <div class="space-y-8">
+                    <div class="bg-white p-6 md:p-8 rounded-lg shadow-md">
+                        <h3 class="text-2xl font-semibold text-slate-800 mb-4">Case File: Ancient Epics vs. Human Evolution</h3>
+                        <p class="text-gray-600 mb-6">Religious claims often place complex human civilizations like those in the Ramayana or Mahabharata hundreds of thousands of years in the past. This stands in stark contrast to the scientific timeline of human cognitive development.</p>
+                        <div class="relative border-l-4 border-slate-300 ml-4 pl-8 py-4">
+                            <div class="absolute -left-2.5 top-4 w-5 h-5 bg-slate-700 rounded-full"></div>
+                            <h4 class="font-bold text-slate-700">~300,000 Years Ago</h4>
+                            <p class="text-sm text-gray-600">Earliest fossils of *Homo sapiens* appear. Basic tools, no evidence of complex society, language, or art.</p>
+                            
+                            <div class="absolute -left-2.5 top-28 w-5 h-5 bg-slate-700 rounded-full"></div>
+                             <h4 class="font-bold text-slate-700 mt-6">~50,000 Years Ago</h4>
+                            <p class="text-sm text-gray-600">"Behavioral Modernity" emerges. Evidence of abstract thought, figurative art, music, and complex burial rites appears. This is the dawn of human culture as we know it.</p>
+                            
+                             <div class="absolute -left-2.5 top-52 w-5 h-5 bg-slate-700 rounded-full"></div>
+                            <h4 class="font-bold text-slate-700 mt-6">~1000 BCE (3,000 Years Ago)</h4>
+                            <p class="text-sm text-gray-600">Iron Age India. Archaeologists date the likely historical kernel of the Mahabharata (Kuru Kingdom) and Ramayana to this period. The stories were compiled and embellished over the next millennium.</p>
+                            
+                             <p class="mt-6 font-semibold text-red-600">Conclusion: The claim of advanced civilizations existing 800,000+ years ago is scientifically impossible. The human brain and culture required for such societies did not exist until far more recently.</p>
+                        </div>
+                    </div>
+
+                     <div class="bg-white p-6 md:p-8 rounded-lg shadow-md">
+                        <h3 class="text-2xl font-semibold text-slate-800 mb-4">Case File: Miracles Under Scrutiny</h3>
+                         <p class="text-gray-600 mb-6">Religious narratives are filled with miracles that defy natural law. When examined critically, these claims lack empirical evidence and independent corroboration. Click to flip the cards.</p>
+                         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                             <div class="perspective-1000">
+                                <div class="card relative w-full h-64">
+                                    <div class="card-face absolute w-full h-full p-6 bg-slate-100 rounded-lg flex flex-col justify-center items-center text-center">
+                                        <h4 class="font-bold text-lg text-slate-700">The Claim: Moon Splitting (Islam)</h4>
+                                        <p class="mt-2 text-sm">The Quran states the moon was split in two as a sign for the Prophet Muhammad.</p>
+                                        <p class="text-xs mt-4 text-gray-500">(Click for Reality Check)</p>
+                                    </div>
+                                    <div class="card-back absolute w-full h-full p-6 bg-slate-700 text-white rounded-lg flex flex-col justify-center">
+                                        <h4 class="font-bold text-lg mb-2">The Reality</h4>
+                                        <p class="text-sm">NASA confirms "no scientific evidence" for this. Such an event would have been recorded by civilizations worldwide (e.g., in China, Europe, India), but no non-Muslim records exist. The claim likely originates from a literal interpretation of a passage about a lunar eclipse.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="perspective-1000">
+                                <div class="card relative w-full h-64">
+                                    <div class="card-face absolute w-full h-full p-6 bg-slate-100 rounded-lg flex flex-col justify-center items-center text-center">
+                                        <h4 class="font-bold text-lg text-slate-700">The Claim: Water to Wine (Christianity)</h4>
+                                        <p class="mt-2 text-sm">The Gospel of John recounts Jesus turning several large jars of water into wine.</p>
+                                        <p class="text-xs mt-4 text-gray-500">(Click for Reality Check)</p>
+                                    </div>
+                                    <div class="card-back absolute w-full h-full p-6 bg-slate-700 text-white rounded-lg flex flex-col justify-center">
+                                        <h4 class="font-bold text-lg mb-2">The Reality</h4>
+                                        <p class="text-sm">This is chemically and physically impossible by natural means. The claim is inherently untestable and unfalsifiable, a one-time event with no lasting physical evidence. Its truth rests entirely on faith in the biblical account, not on empirical verification.</p>
+                                    </div>
+                                </div>
+                            </div>
+                         </div>
+                    </div>
+                 </div>
+            </section>
+        </main>
+
+        <footer class="text-center mt-16 pt-8 border-t border-gray-200">
+            <p class="text-sm text-gray-500">This interactive application is an interpretation of the provided source report, designed for educational and critical analysis purposes.</p>
+        </footer>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const navItems = document.querySelectorAll('.nav-item');
+            const sections = document.querySelectorAll('main section');
+            const cards = document.querySelectorAll('.card');
+            const tabButtons = document.querySelectorAll('.tab-button');
+            const tabContents = document.querySelectorAll('.tab-content');
+
+            function showSection(targetId) {
+                sections.forEach(section => {
+                    if (section.id === `section-${targetId}`) {
+                        section.classList.remove('hidden');
+                    } else {
+                        section.classList.add('hidden');
+                    }
+                });
+
+                navItems.forEach(item => {
+                    if (item.id === `nav-${targetId}`) {
+                        item.classList.add('active');
+                    } else {
+                        item.classList.remove('active');
+                    }
+                });
+            }
+
+            navItems.forEach(item => {
+                item.addEventListener('click', () => {
+                    const targetId = item.id.split('-')[1];
+                    showSection(targetId);
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                });
+            });
+
+            cards.forEach(card => {
+                card.addEventListener('click', () => {
+                    card.classList.toggle('is-flipped');
+                });
+            });
+
+            tabButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    const tabId = button.dataset.tab;
+
+                    tabButtons.forEach(btn => btn.classList.remove('active'));
+                    button.classList.add('active');
+
+                    tabContents.forEach(content => {
+                        if (content.id === `tab-content-${tabId}`) {
+                            content.classList.remove('hidden');
+                        } else {
+                            content.classList.add('hidden');
+                        }
+                    });
+                });
+            });
+
+            const scienceLiteracyCtx = document.getElementById('scienceLiteracyChart').getContext('2d');
+            new Chart(scienceLiteracyCtx, {
+                type: 'bar',
+                data: {
+                    labels: ['Fundamentalist (Bible is literal word of God)', 'Non-Affiliated (Bible is book of fables)'],
+                    datasets: [{
+                        label: 'Average % of Science Questions Answered Correctly',
+                        data: [54, 75],
+                        backgroundColor: [
+                            'rgba(239, 68, 68, 0.6)',
+                            'rgba(59, 130, 246, 0.6)'
+                        ],
+                        borderColor: [
+                            'rgba(239, 68, 68, 1)',
+                            'rgba(59, 130, 246, 1)'
+                        ],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            max: 100,
+                            ticks: {
+                                callback: function(value) {
+                                    return value + '%'
+                                }
+                            }
+                        }
+                    },
+                    plugins: {
+                        legend: {
+                            display: false
+                        },
+                        title: {
+                            display: true,
+                            text: 'Scientific Literacy vs. Religious Belief',
+                            font: {
+                                size: 16
+                            },
+                            color: '#334155'
+                        },
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    return context.dataset.label + ': ' + context.raw + '%';
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>
